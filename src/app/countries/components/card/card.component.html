@@ -1,8 +1,8 @@
-<article class="bg-blue-900 text-white rounded-sm shadow">
-  <div class="w-full h-2/5">
-    <img [src]="country().flag" alt="" class="object-contain" />
+<article class="bg-blue-900 text-white rounded-sm flex flex-col h-[400px]">
+  <div>
+    <img [src]="country().flag" alt="" class="h-[200px] w-full object-cover" />
   </div>
-  <div class="px-4 pt-4 pb-10 h-[60%]">
+  <div class="px-4 pt-4 pb-10">
     <p class="font-bold text-lg pb-3">{{ country().name }}</p>
     <card-information key="Population" [value]="country().population" />
     <card-information key="Region" [value]="country().region" />
