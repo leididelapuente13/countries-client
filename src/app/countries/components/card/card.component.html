@@ -1,9 +1,11 @@
-<article>
-  <img [src]="country()?.flag" alt="" />
-  <div>
-    <p>{{country()?.name}}</p>
-    <p><span class="font-bold">Population: </span>{{country()?.population}}</p>
-    <p><span>Region: </span>{{country()?.region}}</p>
-    <p><span>Capital: </span>{{country()?.capital}}</p>
+<article class="bg-blue-900 text-white rounded-sm shadow">
+  <div class="w-full h-2/5">
+    <img [src]="country().flag" alt="" class="object-contain" />
+  </div>
+  <div class="px-4 pt-4 pb-10 h-[60%]">
+    <p class="font-bold text-lg pb-3">{{ country().name }}</p>
+    <card-information key="Population" [value]="country().population" />
+    <card-information key="Region" [value]="country().region" />
+    <card-information key="Capital" [value]="country().capital ?? 'No tiene'" />
   </div>
 </article>

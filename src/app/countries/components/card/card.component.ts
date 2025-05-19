@@ -1,11 +1,12 @@
 import { Component, input } from '@angular/core';
 import { Country } from '../../interfaces/country.interface';
+import { InformationComponent } from "./information/information.component";
 
 @Component({
   selector: 'country-card',
-  imports: [],
+  imports: [InformationComponent],
   templateUrl: './card.component.html',
 })
 export class CardComponent {
-  country = input<Country>();
+  country = input.required<Country>();
 }
