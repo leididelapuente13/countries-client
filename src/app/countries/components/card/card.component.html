@@ -1,11 +1,11 @@
-<article class="bg-blue-900 text-white rounded-sm flex flex-col h-[400px]">
+<article class="bg-blue-900 text-white rounded-sm flex flex-col h-auto lg:h-[400px]">
   <div>
-    <img [src]="country().flag" alt="" class="h-[200px] w-full object-cover" />
+    <img [src]="country().flag" alt="" class="h-[180px] w-full object-cover sm:h-[200px] lg:h-[200px]" />
   </div>
-  <div class="px-4 pt-4 pb-10">
-    <p class="font-bold text-lg pb-3">{{ country().name }}</p>
-    <card-information key="Population" [value]="country().population" />
+  <div class="px-3 pt-3 pb-8 sm:px-4 sm:pt-4 sm:pb-10">
+    <p class="font-bold text-base pb-2 sm:text-lg sm:pb-3">{{ country().name }}</p>
+    <card-information key="Population" [value]="country().population | number" />
     <card-information key="Region" [value]="country().region" />
-    <card-information key="Capital" [value]="country().capital ?? 'No tiene'" />
+    <card-information key="Capital" [value]="country().capital" />
   </div>
 </article>

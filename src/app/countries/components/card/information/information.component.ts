@@ -8,5 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class InformationComponent {
   @Input() key: string = '';
-  @Input() value: string | number | Date = 'No se encontró información';
+  @Input() value: string | number | Date | null = 'No se encontró información';
 }
