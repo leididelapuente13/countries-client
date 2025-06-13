@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Country } from '../interfaces/country.interface';
+import { Country, Region } from '../interfaces/country.interface';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { CountryMapper } from '../mappers/countries.mapper';
@@ -23,14 +23,29 @@ export class CountriesService {
     }
 
     return this.http.get<RESTCountry[]>(`${this.BASE_URL}/name/${query}`).pipe(
-      map((restCountries)=>CountryMapper.restCountriesToCountries(restCountries)),
+      map((restCountries) => CountryMapper.restCountriesToCountries(restCountries)),
       tap(countries => this.cacheFoundCountriesByName.set(query, countries)),
       catchError(
-        (error)=>{
+        (error) => {
           console.log(error)
-          return throwError(()=> new Error( "There has been an error when trying to get the countries"));
+          return throwError(() => new Error("There has been an error when trying to get the countries"));
         }
       )
+    )
+  }
+
+  getCountriesByRegion(query: Region): Observable<Country[]> {
+    if (this.cacheCountriesByRegion.has(query)) {
+      return of(this.cacheCountriesByRegion.get(query) ?? []);
+    }
+
+    return this.http.get<RESTCountry[]>(`${this.BASE_URL}/region/${query}`).pipe(
+      map(restCountries => CountryMapper.restCountriesToCountries(restCountries)),
+      tap(countries => this.cacheCountriesByRegion.set(query, countries)),
+      catchError((error) => {
+        console.log(`Error fetching countries by region ${query}`, error)
+        return throwError(new Error(`Thre has been an error trying to fetch countries by region ${query}`));
+      })
     )
   }
 }
