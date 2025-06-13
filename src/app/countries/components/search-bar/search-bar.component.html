@@ -6,16 +6,23 @@
     <input
       type="text"
       placeholder="Search for a country..."
+      autofocus
+      #txtSearch
+      (keyup.enter)="countryToSearchByName.emit(txtSearch.value)"
+      (keyup)="inputValue.set(txtSearch.value)"
       class="p-2 py-2.5 outline-none text-sm"
     />
   </div>
   <div class="relative w-2/3 md:w-1/4">
     <select
-      class="bg-blue-900 rounded text-white p-2 outline-none border-none w-full appearance-none pr-8 pl-4"
+    #selectOption
+    (change)="onRegionChange(selectOption.value)"
+    class="bg-blue-900 rounded text-white p-2 outline-none border-none w-full appearance-none pr-8 pl-4"
     >
-      <option value="">Select an option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
+      <option selected disabled>Search by region</option>
+      @for (region of regions; track $index) {
+      <option [value]="region">{{ region }}</option>
+      }
     </select>
     <svg
       class="w-5 h-5 text-white absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
