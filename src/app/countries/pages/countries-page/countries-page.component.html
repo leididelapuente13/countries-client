@@ -1,4 +1,7 @@
-<section class="px-8">
-  <country-search-bar />
-  <country-list [countries]="countries"/>
+<section class="px-8 pb-6">
+  <country-search-bar (countryToSearchByName)="countryNameQuery.set($event)" />
+  @if(countryByNameResource.hasValue()){
+  <country-list [countries]="countryByNameResource.value()" />
+  }
+
 </section>
