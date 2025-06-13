@@ -13,7 +13,7 @@ export class CountryMapper {
 
     return {
       name: name.common,
-      capital: capital[0],
+      capital: capital?.[0] ?? 'Not found',
       languages: language,
       borderCountries: borders,
       topLevelDomain: tld,
