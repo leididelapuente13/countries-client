@@ -3,22 +3,23 @@ import { Country } from '../interfaces/country.interface';
 
 export class CountryMapper {
   static restCountrytoCountry(restCountry: RESTCountry): Country {
-    const { name, area, capital, subregion, region, population, currencies, languages, borders, flags, tld } = restCountry;
+    const { name, area, capital, subregion, region, population, currencies, languages, borders, flags, tld, ccn3 } = restCountry;
 
-    const currency: string = currencies ? Object.values(currencies)[0]?.name || '' : '';
+    const formattedCurrencies: string[] =  currencies ? Object.values(currencies).map(String) : [];
 
-    const language: string = languages ? Object.values(languages)[0] : ''
+    const formattedLanguages: string[] = languages ? Object.values(languages).map(String) : [];
 
-    const nativeName : string = name.nativeName ? Object.values(name.nativeName)[0]?.official : '';
+    const nativeName: string = name.nativeName ? Object.values(name.nativeName)[0]?.official : '';
 
     return {
       name: name.common,
       capital: capital?.[0] ?? 'Not found',
-      languages: language,
+      languages: formattedLanguages,
       borderCountries: borders,
       topLevelDomain: tld,
       flag: flags.svg,
-      currency,
+      alpha3Code: ccn3,
+      currency: formattedCurrencies,
       nativeName,
       subregion,
       region,
