@@ -44,18 +44,28 @@ export class CountriesService {
       tap(countries => this.cacheCountriesByRegion.set(query, countries)),
       catchError((error) => {
         console.log(`Error fetching countries by region ${query}`, error)
-        return throwError(()=>new Error(`There has been an error trying to fetch countries by region ${query}`));
+        return throwError(() => new Error(`There has been an error trying to fetch countries by region ${query}`));
       })
     )
   }
 
-  getCountryByCode(code: string): Observable<Country>{
+  getCountryByCode(code: string): Observable<Country> {
     return this.http.get<RESTCountry[]>(`${this.BASE_URL}/alpha/${code}`).pipe(
       map(restCountry => CountryMapper.restCountrytoCountry(restCountry[0])),
-      catchError((error)=>{
+      catchError((error) => {
         console.error(`There has been an error when looking for a country by the code ${code}`, error);
-        return throwError(()=> new Error(`There has been an error when looking for a country by the code ${code}`))
-      } )
+        return throwError(() => new Error(`There has been an error when looking for a country by the code ${code}`))
+      })
+    )
+  }
+
+  getCountriesByCode(codes: string[]): Observable<Country[]> {
+    return this.http.get<RESTCountry[]>(`${this.BASE_URL}/alpha?codes=${codes.toString()}`).pipe(
+      map(restCountries => CountryMapper.restCountriesToCountries(restCountries)),
+      catchError((error) => {
+        console.error(`There has been an error`, error);
+        return throwError(() => new Error(`There has been an error`, error))
+      })
     )
   }
 }
