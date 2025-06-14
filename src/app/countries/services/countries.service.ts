@@ -16,7 +16,6 @@ export class CountriesService {
 
   cacheFoundCountriesByName = new Map<string, Country[]>;
   cacheCountriesByRegion = new Map<string, Country[]>;
-  cacheCountryByCode = new Map<string, Country>();
 
   getCountriesByName(query: string): Observable<Country[]> {
     if (this.cacheFoundCountriesByName.has(query)) {
@@ -50,14 +49,9 @@ export class CountriesService {
     )
   }
 
-  getCountryByCode(code: string): Observable<Country | null>{
-    if(this.cacheCountryByCode.has(code)){
-      return of(this.cacheCountryByCode.get(code) ?? null)
-    }
-
-    return this.http.get<RESTCountry>(`${this.BASE_URL}/alpha/${code}`).pipe(
-      map(restCountry => CountryMapper.restCountrytoCountry(restCountry)),
-      tap(country => this.cacheCountryByCode.set(code, country)),
+  getCountryByCode(code: string): Observable<Country>{
+    return this.http.get<RESTCountry[]>(`${this.BASE_URL}/alpha/${code}`).pipe(
+      map(restCountry => CountryMapper.restCountrytoCountry(restCountry[0])),
       catchError((error)=>{
         console.error(`There has been an error when looking for a country by the code ${code}`, error);
         return throwError(()=> new Error(`There has been an error when looking for a country by the code ${code}`))
