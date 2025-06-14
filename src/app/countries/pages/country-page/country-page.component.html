@@ -1,0 +1,54 @@
+<section class="py-5 px-9 text-white">
+  <button
+    type="button"
+    class="cursor-pointer py-1 px-2 w-[30%] bg-blue-900 text-white shadow flex justify-center items-center gap-1"
+  >
+    <ng-icon name="heroArrowLeftSolid" />
+    <p>Back</p>
+  </button>
+  <article class="pt-10 flex flex-col gap-5">
+    <div class="h-[180px] object-cover sm:h-[200px] lg:h-[200px]">
+      <img
+        [ngSrc]="country().flag"
+        [alt]="country().name"
+        width="20"
+        height="180"
+        class="w-full h-full object-cover bg-white"
+        sizes="100vw"
+      />
+    </div>
+    <div class="flex flex-col gap-6">
+      <h1 class="font-bold text-xl">{{ country().name }}</h1>
+      <div class="flex flex-col gap-2.5 text-sm">
+        <country-information key="Native Name" [value]="country().nativeName" />
+        <country-information
+          key="Population"
+          [value]="country().population | number"
+        />
+        <country-information key="Region" [value]="country().region" />
+        <country-information key="Sub Region" [value]="country().subregion" />
+        <country-information key="Capital" [value]="country().capital" />
+      </div>
+      <div class="flex flex-col gap-2.5 text-sm">
+        <country-information
+          key="Top Level Domain"
+          [value]="country().topLevelDomain.toString()"
+        />
+        <country-information
+          key="Currencies"
+          [value]="country().currency.toString()"
+        />
+        <country-information
+          key="Languages"
+          [value]="country().languages.toString()"
+        />
+      </div>
+      <div>
+        <h3 class="font-semibold text-[1rem] mb-2.5">Border Countries:</h3>
+        @for (country of country().borderCountries; track $index) {
+          <p>{{country}}</p>
+        }
+      </div>
+    </div>
+  </article>
+</section>
