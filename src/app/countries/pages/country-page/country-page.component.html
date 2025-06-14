@@ -1,7 +1,7 @@
 <section class="py-5 px-9 text-white">
   <button
     type="button"
-    class="cursor-pointer py-1 px-2 w-[30%] bg-blue-900 text-white shadow flex justify-center items-center gap-1"
+    class="cursor-pointer py-1 px-2 w-[30%] bg-blue-900 text-white shadow-md flex justify-center items-center gap-1"
   >
     <ng-icon name="heroArrowLeftSolid" />
     <p>Back</p>
@@ -19,16 +19,30 @@
       />
     </div>
     <div class="flex flex-col gap-6">
-      <h1 class="font-bold text-xl">{{ countryByCodeResource.value().name }}</h1>
+      <h1 class="font-bold text-xl">
+        {{ countryByCodeResource.value().name }}
+      </h1>
       <div class="flex flex-col gap-2.5 text-sm">
-        <country-information key="Native Name" [value]="countryByCodeResource.value().nativeName" />
+        <country-information
+          key="Native Name"
+          [value]="countryByCodeResource.value().nativeName"
+        />
         <country-information
           key="Population"
           [value]="countryByCodeResource.value().population | number"
         />
-        <country-information key="Region" [value]="countryByCodeResource.value().region" />
-        <country-information key="Sub Region" [value]="countryByCodeResource.value().subregion.toString()" />
-        <country-information key="Capital" [value]="countryByCodeResource.value().capital" />
+        <country-information
+          key="Region"
+          [value]="countryByCodeResource.value().region"
+        />
+        <country-information
+          key="Sub Region"
+          [value]="countryByCodeResource.value().subregion.toString()"
+        />
+        <country-information
+          key="Capital"
+          [value]="countryByCodeResource.value().capital"
+        />
       </div>
       <div class="flex flex-col gap-2.5 text-sm">
         <country-information
@@ -44,17 +58,19 @@
           [value]="countryByCodeResource.value().languages.toString()"
         />
       </div>
-      <div>
+      <div class="flex flex-col gap-2">
         <h3 class="font-semibold text-[1rem] mb-2.5">Border Countries:</h3>
-        @for (country of countryByCodeResource.value().borderCountries; track $index) {
-        <p>{{ country }}</p>
-        }
+        <div class="flex flex-wrap gap-2">
+          @for (country of countriesByCodeResource.value(); track $index) {
+          <country-button [countryName]="country.name" [countryCode]="country.alpha3Code" />
+          }
+        </div>
       </div>
     </div>
   </article>
   }
   <!--  -->
   @if(countryByCodeResource.error()){
-    <h3 class="text-center text-lg mt-10">{{countryByCodeResource.error()}}</h3>
+  <h3 class="text-center text-lg mt-10">{{ countryByCodeResource.error() }}</h3>
   }
 </section>
