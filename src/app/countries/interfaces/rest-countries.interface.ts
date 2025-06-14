@@ -7,7 +7,7 @@ export interface RESTCountry {
   independent: boolean;
   status: string;
   unMember: boolean;
-  currencies: Currencies;
+  currencies: { [key: string]: string };
   idd: Idd;
   capital?: string[];
   altSpellings: string[];
@@ -48,10 +48,6 @@ export interface Car {
 export interface CoatOfArms {
   png: string;
   svg: string;
-}
-
-export interface Currencies {
-  COP: Cop;
 }
 
 export interface Cop {
