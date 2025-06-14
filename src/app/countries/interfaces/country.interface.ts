@@ -6,10 +6,11 @@ export interface Country {
   region: string;
   population: number;
 
+  alpha3Code: string,
   topLevelDomain: string[];
   area: number;
-  currency: string;
-  languages: string;
+  currency: string[];
+  languages: string[];
   borderCountries: string[];
   flag: string;
 }

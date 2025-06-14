@@ -13,7 +13,7 @@ export interface RESTCountry {
   altSpellings: string[];
   region: string;
   subregion: string;
-  languages: Languages;
+  languages: object;
   latlng: number[];
   landlocked: boolean;
   borders: string[];
@@ -84,9 +84,6 @@ export interface Idd {
   suffixes: string[];
 }
 
-export interface Languages {
-  spa: string;
-}
 
 export interface Maps {
   googleMaps: string;
