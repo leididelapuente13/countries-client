@@ -17,5 +17,4 @@ export class CardComponent {
   navigateToCountryDetails(code: string){
     this.router.navigate(['/countries', code]);
   }
-
 }
