@@ -6,11 +6,12 @@
     <ng-icon name="heroArrowLeftSolid" />
     <p>Back</p>
   </button>
+  @if(countryByCodeResource.hasValue()){
   <article class="pt-10 flex flex-col gap-5">
     <div class="h-[180px] object-cover sm:h-[200px] lg:h-[200px]">
       <img
-        [ngSrc]="country().flag"
-        [alt]="country().name"
+        [ngSrc]="countryByCodeResource.value().flag"
+        [alt]="countryByCodeResource.value().name"
         width="20"
         height="180"
         class="w-full h-full object-cover bg-white"
@@ -18,37 +19,42 @@
       />
     </div>
     <div class="flex flex-col gap-6">
-      <h1 class="font-bold text-xl">{{ country().name }}</h1>
+      <h1 class="font-bold text-xl">{{ countryByCodeResource.value().name }}</h1>
       <div class="flex flex-col gap-2.5 text-sm">
-        <country-information key="Native Name" [value]="country().nativeName" />
+        <country-information key="Native Name" [value]="countryByCodeResource.value().nativeName" />
         <country-information
           key="Population"
-          [value]="country().population | number"
+          [value]="countryByCodeResource.value().population | number"
         />
-        <country-information key="Region" [value]="country().region" />
-        <country-information key="Sub Region" [value]="country().subregion" />
-        <country-information key="Capital" [value]="country().capital" />
+        <country-information key="Region" [value]="countryByCodeResource.value().region" />
+        <country-information key="Sub Region" [value]="countryByCodeResource.value().subregion.toString()" />
+        <country-information key="Capital" [value]="countryByCodeResource.value().capital" />
       </div>
       <div class="flex flex-col gap-2.5 text-sm">
         <country-information
           key="Top Level Domain"
-          [value]="country().topLevelDomain.toString()"
+          [value]="countryByCodeResource.value().topLevelDomain.toString()"
         />
         <country-information
           key="Currencies"
-          [value]="country().currency.toString()"
+          [value]="countryByCodeResource.value().currency.toString()"
         />
         <country-information
           key="Languages"
-          [value]="country().languages.toString()"
+          [value]="countryByCodeResource.value().languages.toString()"
         />
       </div>
       <div>
         <h3 class="font-semibold text-[1rem] mb-2.5">Border Countries:</h3>
-        @for (country of country().borderCountries; track $index) {
-          <p>{{country}}</p>
+        @for (country of countryByCodeResource.value().borderCountries; track $index) {
+        <p>{{ country }}</p>
         }
       </div>
     </div>
   </article>
+  }
+  <!--  -->
+  @if(countryByCodeResource.error()){
+    <h3 class="text-center text-lg mt-10">{{countryByCodeResource.error()}}</h3>
+  }
 </section>
