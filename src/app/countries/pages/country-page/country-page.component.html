@@ -1,22 +1,24 @@
 <section class="py-5 px-9 text-white">
-  <country-back-button/>
+  <country-back-button />
   @if(countryByCodeResource.hasValue()){
-  <article class="pt-10 flex flex-col gap-5">
-    <div class="h-fit object-cover">
+  <article class="pt-10 flex flex-col gap-5 lg:pt-16 lg:flex-row lg:gap-30">
+    <div class="h-fit object-cover lg:w-2/5">
       <img
         [ngSrc]="countryByCodeResource.value().flag"
         [alt]="countryByCodeResource.value().name"
         width="20"
         height="300"
-        class="w-full h-full object-cover bg-white"
+        class="w-full h-fit lg:h-[350px] object-cover"
         sizes="100vw"
       />
     </div>
-    <div class="flex flex-col gap-6">
-      <h1 class="font-bold text-xl">
-        {{ countryByCodeResource.value().name }}
-      </h1>
-      <div class="flex flex-col gap-2.5 text-sm">
+    <div class="h-fit grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-6 lg:py-10">
+      <div class="lg:col-span-2">
+        <h1 class="font-bold text-xl lg:col-span-2">
+          {{ countryByCodeResource.value().name }}
+        </h1>
+      </div>
+      <div class="flex flex-col gap-2.5 text-sm lg:mr-14">
         <country-information
           key="Native Name"
           [value]="countryByCodeResource.value().nativeName"
@@ -52,11 +54,16 @@
           [value]="countryByCodeResource.value().languages.toString()"
         />
       </div>
-      <div class="flex flex-col gap-2">
-        <h3 class="font-semibold text-[1rem] mb-2.5">Border Countries:</h3>
-        <div class="flex flex-wrap gap-2">
+      <div class="flex flex-col gap-3 lg:flex-row lg:gap-2 lg:w-full lg:col-span-2 lg:items-baseline">
+        <h3 class="font-semibold text-[1rem]">
+          Border Countries:
+        </h3>
+        <div class="flex flex-wrap gap-2 lg:flex-row">
           @for (country of countriesByCodeResource.value(); track $index) {
-          <country-button [countryName]="country.name" [countryCode]="country.alpha3Code" />
+          <country-button
+            [countryName]="country.name"
+            [countryCode]="country.alpha3Code"
+          />
           }
         </div>
       </div>
