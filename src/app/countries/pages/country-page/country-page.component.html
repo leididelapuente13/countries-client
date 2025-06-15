@@ -8,12 +8,12 @@
   </button>
   @if(countryByCodeResource.hasValue()){
   <article class="pt-10 flex flex-col gap-5">
-    <div class="h-[180px] object-cover sm:h-[200px] lg:h-[200px]">
+    <div class="h-fit object-cover">
       <img
         [ngSrc]="countryByCodeResource.value().flag"
         [alt]="countryByCodeResource.value().name"
         width="20"
-        height="180"
+        height="300"
         class="w-full h-full object-cover bg-white"
         sizes="100vw"
       />
