@@ -10,14 +10,14 @@
       #txtSearch
       (keyup.enter)="countryToSearchByName.emit(txtSearch.value)"
       (keyup)="inputValue.set(txtSearch.value)"
-      class="p-2 py-2.5 outline-none text-sm"
+      class="p-2 py-2.5 outline-none text-sm w-full"
     />
   </div>
   <div class="relative w-2/3 md:w-1/4">
     <select
     #selectOption
     (change)="onRegionChange(selectOption.value)"
-    class="bg-blue-900 rounded text-white p-2 outline-none border-none w-full appearance-none pr-8 pl-4"
+    class="bg-blue-900 rounded text-white outline-none border-none w-full appearance-none pr-8 pl-4 py-2.5"
     >
       <option selected disabled>Search by region</option>
       @for (region of regions; track $index) {
