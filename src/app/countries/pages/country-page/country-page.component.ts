@@ -5,9 +5,8 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroArrowLeftSolid } from '@ng-icons/heroicons/solid';
 import { InformationComponent } from "../../components/card/information/information.component";
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { CountriesService } from '../../services/countries.service';
-import { firstValueFrom, map, Observable } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CountryButtonComponent } from "./country-button/country-button.component";
 
@@ -21,14 +20,13 @@ export class CountryPageComponent {
 
   private route = inject(ActivatedRoute);
   private countriesService = inject(CountriesService);
-  countryCode = toSignal(this.route.paramMap.pipe(
-    map(params => params.get('code'))
-  ));
+  private countryCode = toSignal<string>(this.route.params.pipe(map(params => params['code'])));
+
   countryByCodeResource = resource({
-    request: () => ({ code: this.countryCode }),
+    request: () => ({ code: this.countryCode() }),
     loader: async ({ request }) => {
-      if (!request.code) return;
-      return await firstValueFrom(this.countriesService.getCountryByCode(String(request.code)));
+      if (!request.code || typeof(request.code) !== 'string') return;
+      return await firstValueFrom(this.countriesService.getCountryByCode(request.code));
     },
   });
 
