@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme {
   --color-*: initial;
   --color-white: #ffffff;
@@ -33,3 +34,5 @@
   font-style: normal;
   font-display: swap;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
