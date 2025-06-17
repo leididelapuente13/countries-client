@@ -1,7 +1,7 @@
 <div
   class="flex flex-col gap-8 md:gap-0 md:items-center md:justify-between md:flex-row text-white pt-9 mb-5 lg:px-6"
 >
-  <div class="rounded bg-blue-900 border-none flex items-center pl-6 md:w-2/5">
+  <div class="rounded bg-blue-900 border-none flex items-center h-14 pl-6 md:w-2/5 ">
     <ng-icon name="heroMagnifyingGlassSolid" class="font-extrabold" />
     <input
       type="text"
@@ -17,7 +17,7 @@
     <select
     #selectOption
     (change)="onRegionChange(selectOption.value)"
-    class="bg-blue-900 rounded text-white outline-none border-none w-full appearance-none pr-8 pl-4 py-2.5"
+    class="bg-blue-900 rounded text-white outline-none border-none w-full h-14 appearance-none pr-8 pl-4 py-2.5"
     >
       <option selected disabled>Search by region</option>
       @for (region of regions; track $index) {
