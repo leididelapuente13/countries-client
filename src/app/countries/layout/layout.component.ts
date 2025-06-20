@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopBarComponent } from "../../shared/components/layout/top-bar/top-bar.component";
 
@@ -7,4 +7,6 @@ import { TopBarComponent } from "../../shared/components/layout/top-bar/top-bar.
   imports: [RouterOutlet, TopBarComponent],
   templateUrl: './layout.component.html',
 })
-export class LayoutComponent { }
+export class LayoutComponent {
+  theme = signal('');
+}
