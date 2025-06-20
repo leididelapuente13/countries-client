@@ -33,7 +33,7 @@ export class SearchBarComponent {
     }, 500);
 
     onCleanUp(() => {
-      clearTimeout(500)
+      clearTimeout(1000)
     })
   });
 
