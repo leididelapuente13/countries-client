@@ -1,7 +1,7 @@
 <header
   class="flex justify-between items-center px-7 py-5 shadow bg-white text-black dark:bg-blue-900 dark:text-white"
 >
-  <p class="font-bold text-[1.1rem] cursor-pointer">Where in the world?</p>
+  <a class="font-bold text-[1.1rem] cursor-pointer" (click)="navigateToMainPage()">Where in the world?</a>
   <div>
     <button type="button" class="flex items-center gap-2 cursor-pointer" (click)="handleToggleMode()">
       <ng-icon name="heroMoonSolid" />

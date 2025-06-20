@@ -1,4 +1,19 @@
 <section class="px-8 pb-6 flex flex-col gap-4">
-  <country-search-bar (countryToSearchByName)="countryNameQuery.set($event)" (countryToSearchByRegion)="countryRegionQuery.set($event)" />
-  <country-list [countries]="countryNameQuery() !== '' ? (countryByNameResource.value() ?? []) : (countryByRegionResource.value() ?? [])" />
+  <country-search-bar
+    (countryToSearchByName)="countryNameQuery.set($event)"
+    (countryToSearchByRegion)="countryRegionQuery.set($event)"
+  />
+  <country-list
+    [countries]="
+      countryNameQuery() !== ''
+        ? countryByNameResource.value() ?? []
+        : countryByRegionResource.value() ?? []
+    "
+  />
+  @if (countryNameQuery() !== '' && !countryByNameResource.hasValue() &&
+  !countryByNameResource.isLoading()) {
+  <p class="dark:text-white font-medium text-lg text-center mt-36">
+    We couldn't find any countries matching your search.
+  </p>
+  }
 </section>

@@ -1,7 +1,9 @@
 <div
-  class="flex flex-col gap-8 md:gap-0 md:items-center md:justify-between md:flex-row text-white pt-9 mb-5 lg:px-6"
+  class="flex flex-col gap-8 text-grey-400 dark:text-white md:gap-0 md:items-center md:justify-between md:flex-row pt-9 mb-5 lg:px-6"
 >
-  <div class="rounded bg-blue-900 border-none flex items-center h-14 pl-6 md:w-2/5 ">
+  <div
+    class="rounded bg-white shadow-md dark:bg-blue-900 dark:text-white border-none flex items-center h-14 pl-6 md:w-2/5"
+  >
     <ng-icon name="heroMagnifyingGlassSolid" class="font-extrabold" />
     <input
       type="text"
@@ -15,9 +17,9 @@
   </div>
   <div class="relative w-2/3 md:w-1/4">
     <select
-    #selectOption
-    (change)="onRegionChange(selectOption.value)"
-    class="bg-blue-900 rounded text-white outline-none border-none w-full h-14 appearance-none pr-8 pl-4 py-2.5"
+      #selectOption
+      (change)="onRegionChange(selectOption.value)"
+      class="bg-white shadow-md dark:bg-blue-900 rounded outline-none border-none w-full h-14 appearance-none pr-8 pl-4 py-2.5"
     >
       <option selected disabled>Search by region</option>
       @for (region of regions; track $index) {
@@ -25,7 +27,7 @@
       }
     </select>
     <svg
-      class="w-5 h-5 text-white absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+      class="w-5 h-5 text-grey-400 dark:text-white absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
       fill="none"
       stroke="currentColor"
       stroke-width="2"
