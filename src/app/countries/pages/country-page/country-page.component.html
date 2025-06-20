@@ -33,7 +33,7 @@
         />
         <country-information
           key="Sub Region"
-          [value]="countryByCodeResource.value().subregion.toString()"
+          [value]="countryByCodeResource.value().subregion"
         />
         <country-information
           key="Capital"
@@ -43,15 +43,15 @@
       <div class="flex flex-col gap-2.5 text-sm lg:text-lg">
         <country-information
           key="Top Level Domain"
-          [value]="countryByCodeResource.value().topLevelDomain.toString()"
+          [value]="countryByCodeResource.value().topLevelDomain | arrayToString"
         />
         <country-information
           key="Currencies"
-          [value]="countryByCodeResource.value().currency.toString()"
+          [value]="countryByCodeResource.value().currency | arrayToString"
         />
         <country-information
           key="Languages"
-          [value]="countryByCodeResource.value().languages.toString()"
+          [value]="countryByCodeResource.value().languages | arrayToString"
         />
       </div>
       <div

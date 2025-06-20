@@ -8,10 +8,11 @@ import { firstValueFrom, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CountryButtonComponent } from "./country-button/country-button.component";
 import { BackButtonComponent } from "./back-button/back-button.component";
+import { ArrayToStringPipe } from '../../../shared/pipes/arrayToString.pipe';
 
 @Component({
   selector: 'app-country-page',
-  imports: [NgOptimizedImage, DecimalPipe, InformationComponent, CountryButtonComponent, BackButtonComponent],
+  imports: [NgOptimizedImage, DecimalPipe, InformationComponent, CountryButtonComponent, BackButtonComponent, ArrayToStringPipe],
   templateUrl: './country-page.component.html'
 })
 export class CountryPageComponent {
